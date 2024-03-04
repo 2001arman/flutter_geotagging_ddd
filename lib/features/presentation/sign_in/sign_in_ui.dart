@@ -13,33 +13,22 @@ class SignInUi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController usernameController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
     Widget myFormSection() {
       return Column(
         children: [
           CustomTextFormField(
-            title: "Username",
-            hintText: "Masukkan Username",
-            controller: usernameController,
+            title: "Email",
+            hintText: "Masukkan Email",
+            controller: logic.emailController,
+            onChanged: logic.onChangeUsername,
           ),
           CustomTextFormField(
             title: "Password",
             hintText: "Masukkan Password",
-            controller: passwordController,
+            controller: logic.passwordController,
+            onChanged: logic.onChangePassword,
             isPassword: true,
           ),
-          SizedBox(
-            width: double.infinity,
-            child: Text(
-              "Forgot Password?",
-              style: orangeTextStyle.copyWith(
-                fontSize: 11,
-                fontWeight: semiBold,
-              ),
-              textAlign: TextAlign.end,
-            ),
-          )
         ],
       );
     }
@@ -76,9 +65,12 @@ class SignInUi extends StatelessWidget {
             ),
             myFormSection(),
             SizedBox(height: defaultMargin),
-            MyButton(
-              onTap: () => logic.signIn(),
-              title: "Login",
+            Obx(
+              () => MyButton(
+                onTap: () => logic.signIn(),
+                disable: logic.isButtonDisable,
+                title: "Login",
+              ),
             ),
           ],
         ),

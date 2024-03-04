@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:geotagging/core/app_route.dart';
 import 'package:get/get.dart';
@@ -37,6 +38,10 @@ class MyApp extends StatelessWidget {
       ),
       getPages: AppRoute.routes,
       initialRoute: AppRoute.initialRoute,
+      builder: (context, child) {
+        child = EasyLoading.init()(context, child);
+        return MediaQuery(data: MediaQuery.of(context), child: child);
+      },
     );
   }
 }

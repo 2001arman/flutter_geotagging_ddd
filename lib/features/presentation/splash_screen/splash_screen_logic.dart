@@ -11,8 +11,8 @@ class SplashScreenLogic extends GetxController with WidgetsBindingObserver {
   final preference = Get.find<SharedPreferences>();
   Future<void> nextRoute() async {
     Get.log('next route kah?');
-    final hasToken = preference.getString(StorageConstants.token);
-    if (hasToken != null) {
+    final hasPegawai = preference.getString(StorageConstants.pegawai);
+    if (hasPegawai != null) {
       Get.offAllNamed(MainPageUi.namePath);
     } else {
       Get.offNamed(SignInUi.namePath);

@@ -4,17 +4,21 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:connectivity/connectivity.dart';
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+import '../common/exception.dart';
+
 class ApiProvider {
   static const String tagName = 'APIProvider';
 
-  final String baseUrl;
+  final String baseUrl = 'https://skripsi.armanmaulana.com/api/';
 
   late bool isConnected = false;
   late Dio _dio;
@@ -24,8 +28,8 @@ class ApiProvider {
   late BaseOptions dioOptions;
   late Directory dir;
 
-  ApiProvider({required this.baseUrl}) {
-    dioOptions = BaseOptions()..baseUrl = '$baseUrl/api';
+  ApiProvider() {
+    dioOptions = BaseOptions()..baseUrl = baseUrl;
     dioOptions.validateStatus = (value) {
       return value! < 500;
     };
@@ -40,40 +44,15 @@ class ApiProvider {
       return client;
     };
 
-    if (Get.isLogEnable) {
-      _dio.interceptors.add(PrettyDioLogger(
-        requestHeader: true,
-        requestBody: true,
-        responseBody: true,
-        responseHeader: false,
-        error: true,
-        compact: true,
-        maxWidth: 90,
-      ));
-    }
-    _dio.interceptors
-        .add(InterceptorsWrapper(onRequest: (options, handler) async {
-      // DioLogger.onSend(tagName, options);
-      await checkConnectivity();
-    }, onResponse: (response, handler) {
-      // DioLogger.onSuccess(tagName, response);
-      return handler.next(response);
-    }, onError: (DioError dioError, handler) {
-      // DioLogger.onError(tagName, dioError);
-
-      throwIfNoSuccess(dioError);
-      return handler.next(dioError);
-    }));
-
-    // if you use ip dns server
-    (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-        (client) {
-      client.badCertificateCallback =
-          (X509Certificate cert, String host, int port) {
-        return true;
-      };
-      return null;
-    };
+    _dio.interceptors.add(PrettyDioLogger(
+      requestHeader: true,
+      requestBody: true,
+      responseBody: true,
+      responseHeader: false,
+      error: true,
+      compact: true,
+      maxWidth: 90,
+    ));
   }
 
   noInternetWarning() async {
@@ -119,11 +98,9 @@ class ApiProvider {
 
   void throwIfNoSuccess(DioError ex) async {
     if (ex.response!.statusCode! < 200 || ex.response!.statusCode! > 299) {
-      Get.log(
-          "Gagal Oy,,, ${json.decode(ex.response.toString())["meta"]["message"]}");
-      String errorMessage = json.decode(ex.response.toString())['meta']
-              ['message'] ??
-          json.decode(ex.response.toString())['meta']['code'];
+      Get.log("Gagal Oy,,, ${json.decode(ex.response.toString())["message"]}");
+      String errorMessage = json.decode(ex.response.toString())['message'] ??
+          json.decode(ex.response.toString())['code'];
       Get.snackbar(
         'Oops..',
         errorMessage,
@@ -161,7 +138,7 @@ class ApiProvider {
       var response = await _dio.post(path);
       return response;
     } on DioError catch (ex) {
-      throw Exception(json.decode(ex.response.toString())['error']);
+      throw Exception(json.decode(ex.response.toString())['message']);
     }
   }
 
@@ -171,7 +148,22 @@ class ApiProvider {
       var response = await _dio.post(path, data: body);
       return response;
     } on DioError catch (e) {
-      throw Exception(json.decode(e.response.toString())['error']);
+      throw Exception(json.decode(e.response.toString())['message']);
+    }
+  }
+
+  Future<Either<GenericException, Response>> postData(
+      String path, dynamic data) async {
+    try {
+      var response = await _dio.post(path, data: data);
+      if (response.data['status'] == 'failed') {
+        return Left(GenericException(
+            code: ExceptionCode.unknown, info: response.data['message']));
+      }
+      return Right(response);
+    } catch (ex) {
+      EasyLoading.dismiss();
+      throw Exception(ex);
     }
   }
 }

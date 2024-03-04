@@ -11,31 +11,35 @@ import '../../../utility/shared/widgets/custom_card_button.dart';
 
 class MainPageUi extends StatelessWidget {
   static const String namePath = '/main_page';
-   MainPageUi({super.key});
+  MainPageUi({super.key});
   final logic = Get.find<MainPageLogic>();
+  final state = Get.find<MainPageLogic>().state;
 
   @override
   Widget build(BuildContext context) {
     Widget profileSection() {
       Widget namaSection() {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Halo,", style: whiteTextStyle),
-            const SizedBox(height: 4),
-            Text(
-              "nama",
-              style: whiteTextStyle.copyWith(
-                fontWeight: semiBold,
-                fontSize: 18,
+        return Obx(
+          () => Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Halo,", style: whiteTextStyle),
+              const SizedBox(height: 4),
+              Text(
+                state.pegawai.value?.name ?? '',
+                style: whiteTextStyle.copyWith(
+                  fontWeight: semiBold,
+                  fontSize: 18,
+                ),
               ),
-            ),
-            const SizedBox(height: 4),
-            Text('29123931209', style: whiteTextStyle),
-            const SizedBox(height: 4),
-            Text("Staff IT", style: whiteTextStyle),
-          ],
+              const SizedBox(height: 4),
+              Text(state.pegawai.value?.nip ?? '', style: whiteTextStyle),
+              const SizedBox(height: 4),
+              Text('Divisi ${state.pegawai.value?.divisi ?? ''}',
+                  style: whiteTextStyle),
+            ],
+          ),
         );
       }
 
@@ -84,16 +88,12 @@ class MainPageUi extends StatelessWidget {
                 CustomCardButton(
                   title: "Absensi\nKehadiran",
                   imageUrl: "assets/icon_absen.png",
-                  onTap: () {
-                    Get.toNamed(AbsensiUI.namePath);
-                  },
+                  onTap: () => Get.toNamed(AbsensiUI.namePath),
                 ),
                 CustomCardButton(
                   title: "Pengajuan\nCuti",
                   imageUrl: "assets/icon_cuti.png",
-                  onTap: () {
-                    Get.toNamed(CutiUi.namePath);
-                  },
+                  onTap: () => Get.toNamed(CutiUi.namePath),
                 ),
               ],
             ),
@@ -103,23 +103,19 @@ class MainPageUi extends StatelessWidget {
                 CustomCardButton(
                   title: "Riwayat\nKehadiran",
                   imageUrl: "assets/icon_riwayat.png",
-                  onTap: () {
-                    Get.toNamed(RiwayatAbsensiUi.namePath);
-                  },
+                  onTap: () => Get.toNamed(RiwayatAbsensiUi.namePath),
                 ),
                 CustomCardButton(
                   title: "Pengajuan\nIzin",
                   imageUrl: "assets/icon_izin.png",
-                  onTap: () {
-                    Get.toNamed(IzinUi.namePath);
-                  },
+                  onTap: () => Get.toNamed(IzinUi.namePath),
                 ),
               ],
             ),
             CustomCardButton(
               title: "Logout",
               imageUrl: "assets/icon_logout.png",
-              onTap: () {},
+              onTap: logic.logout,
             ),
           ],
         ),

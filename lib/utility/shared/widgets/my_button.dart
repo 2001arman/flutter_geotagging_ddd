@@ -7,11 +7,12 @@ class MyButton extends StatelessWidget {
       {Key? key,
       required this.onTap,
       required this.title,
-      this.isOrange = true})
+      this.isOrange = true,
+      this.disable = false})
       : super(key: key);
   final VoidCallback onTap;
   final String title;
-  final bool isOrange;
+  final bool isOrange, disable;
 
   @override
   Widget build(BuildContext context) {
@@ -22,19 +23,27 @@ class MyButton extends StatelessWidget {
         height: 50,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: isOrange ? kOrangeColor : kWhiteColor,
+          color: disable
+              ? kGreyColor
+              : isOrange
+                  ? kOrangeColor
+                  : kWhiteColor,
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: kOrangeColor),
+          border: disable
+              ? Border.all(color: Colors.transparent)
+              : Border.all(color: kOrangeColor),
         ),
         child: Text(
           title,
-          style: isOrange
-              ? whiteTextStyle.copyWith(
-                  fontWeight: semiBold,
-                )
-              : orangeTextStyle.copyWith(
-                  fontWeight: semiBold,
-                ),
+          style: disable
+              ? blackTextStyle.copyWith(fontWeight: semiBold)
+              : isOrange
+                  ? whiteTextStyle.copyWith(
+                      fontWeight: semiBold,
+                    )
+                  : orangeTextStyle.copyWith(
+                      fontWeight: semiBold,
+                    ),
         ),
       ),
     );

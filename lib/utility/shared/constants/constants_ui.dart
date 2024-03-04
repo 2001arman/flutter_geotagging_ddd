@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Color kWhiteColor = Color(0xFFFFFFFF);
-Color kOrangeColor = Color(0xFFF48319);
-Color kBlackColor = Color(0xFF595959);
-Color kGreyColor = Color(0xFFD2D2D2);
-Color kTitleColor = Color(0xFF181818);
-Color kGreenColor = Color(0xFF58E142);
-Color kRedColor = Color(0xFFFF6767);
-Color kPinkColor = Color(0xFFFFEDED);
-Color kGreenBGColor = Color(0xFFEFFFEC);
-Color kDividerColor = Color(0xFFEDEDED);
-Color kBorderColor = Color(0xFFD1D1D6);
-Color kOrangBGColor = Color(0xFFFFEFDF);
+Color kWhiteColor = const Color(0xFFFFFFFF);
+Color kOrangeColor = const Color(0xFFF48319);
+Color kBlackColor = const Color(0xFF595959);
+Color kGreyColor = const Color(0xFFD2D2D2);
+Color kTitleColor = const Color(0xFF181818);
+Color kGreenColor = const Color(0xFF58E142);
+Color kRedColor = const Color(0xFFFF6767);
+Color kPinkColor = const Color(0xFFFFEDED);
+Color kGreenBGColor = const Color(0xFFEFFFEC);
+Color kDividerColor = const Color(0xFFEDEDED);
+Color kBorderColor = const Color(0xFFD1D1D6);
+Color kOrangBGColor = const Color(0xFFFFEFDF);
 
 TextStyle whiteTextStyle = GoogleFonts.inter(
   color: kWhiteColor,
