@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geotagging/features/presentation/absensi/absensi_ui.dart';
 import 'package:geotagging/features/presentation/cuti/cuti_ui.dart';
 import 'package:geotagging/features/presentation/izin/izin_ui.dart';
+import 'package:geotagging/features/presentation/main_page/main_page_logic.dart';
 import 'package:geotagging/features/presentation/riwayat_absensi/riwayat_absensi_ui.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +11,8 @@ import '../../../utility/shared/widgets/custom_card_button.dart';
 
 class MainPageUi extends StatelessWidget {
   static const String namePath = '/main_page';
-  const MainPageUi({super.key});
+   MainPageUi({super.key});
+  final logic = Get.find<MainPageLogic>();
 
   @override
   Widget build(BuildContext context) {

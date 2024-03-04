@@ -25,7 +25,7 @@ class AppRoute {
     ),
     GetPage(
       name: MainPageUi.namePath,
-      page: () => const MainPageUi(),
+      page: () => MainPageUi(),
       binding: MainPageBinding(),
     ),
     GetPage(
@@ -35,7 +35,7 @@ class AppRoute {
     ),
     GetPage(
       name: AbsensiUI.namePath,
-      page: () => const AbsensiUI(),
+      page: () => AbsensiUI(),
       binding: AbsensiBinding(),
     ),
     GetPage(
