@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:geotagging/features/application/absensi_app_service.dart';
 import 'package:geotagging/features/application/map_app_service.dart';
 import 'package:geotagging/features/presentation/absensi/absensi_state.dart';
@@ -44,14 +45,23 @@ class AbsensiLogic extends GetxController {
   }
 
   void cekJarak() async {
+    EasyLoading.show();
     LatLng userPosition = await _app.getUserPosition();
     double jarak = _mapApp.distanceBetween(state.latLong.latitude,
         state.latLong.longitude, userPosition.latitude, userPosition.longitude);
+
     if (jarak > 100) {
-      return Utils.dialogTidakBisaAbsen(jarak);
+      return Utils.dialogTidakBisaAbsen(jarak, userPosition);
     } else {
-      return Utils.dialogBisaAbsen(
-          state.dateController.text, state.clockController.text);
+      final res = await _app.absen();
+      res.fold(
+          (l) => Get.snackbar('Error', l.info),
+          (r) => Utils.dialogBisaAbsen(
+                state.dateController.text,
+                state.clockController.text,
+                userPosition,
+              ));
     }
+    EasyLoading.dismiss();
   }
 }

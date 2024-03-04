@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'constants/constants_ui.dart';
 import 'widgets/my_button.dart';
 
 class Utils {
-  static Future<dynamic> dialogTidakBisaAbsen(double jarak) {
+  static Future<dynamic> dialogTidakBisaAbsen(double jarak, LatLng location) {
     int jarakRound = jarak.round();
     return Get.dialog(
       AlertDialog(
@@ -51,6 +52,14 @@ class Utils {
                 ),
                 textAlign: TextAlign.start,
               ),
+              const SizedBox(height: 10),
+              Text(
+                "Lokasi : ${location.latitude}, ${location.longitude}",
+                style: dialogRedTextStyle.copyWith(
+                  fontWeight: semiBold,
+                ),
+                textAlign: TextAlign.start,
+              ),
               const SizedBox(height: 50),
               MyButton(
                 onTap: () {
@@ -66,7 +75,8 @@ class Utils {
     );
   }
 
-  static Future<dynamic> dialogBisaAbsen(String tanggal, String jam) {
+  static Future<dynamic> dialogBisaAbsen(
+      String tanggal, String jam, LatLng location) {
     return Get.dialog(
       AlertDialog(
         backgroundColor: const Color(0xFFEFFFEC),
@@ -122,6 +132,17 @@ class Utils {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Jam       : $jam WITA",
+                  style: dialogGreenTextStyle.copyWith(
+                    fontWeight: semiBold,
+                  ),
+                  textAlign: TextAlign.start,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Lokasi   : ${location.latitude}, ${location.longitude}",
                   style: dialogGreenTextStyle.copyWith(
                     fontWeight: semiBold,
                   ),
