@@ -6,6 +6,7 @@ import 'package:geotagging/app/common/exception.dart';
 import 'package:geotagging/features/domain/absensi/interface/absensi_repository_base.dart';
 import 'package:geotagging/features/infrastructure/absensi/data_source/absensi_remote_data_source.dart';
 import 'package:geotagging/features/infrastructure/absensi/models/absensi_request.dart';
+import 'package:geotagging/features/infrastructure/absensi/models/riwayat_absensi_response.dart';
 import 'package:geotagging/features/infrastructure/signin/models/pegawai_profile.dart';
 import 'package:get/get.dart';
 // ignore: depend_on_referenced_packages, implementation_imports
@@ -18,18 +19,9 @@ class AbsensiRepository implements AbsensiRepositoryBase {
   var absensiRemoteDataSource = Get.find<AbsensiRemotedataSource>();
   var storage = Get.find<SharedPreferences>();
 
-  @override
-  Future<Either<GenericException, String>> absensi() async {
+  PegawaiProfile get pegawaiProfile {
     String? pegawai = storage.getString(StorageConstants.pegawai);
-    PegawaiProfile pegawaiProfile =
-        PegawaiProfile.fromMap(json.decode(pegawai!));
-
-    final res = await absensiRemoteDataSource.absen(
-        absensiRequest: AbsensiRequest(idPegawai: pegawaiProfile.id ?? 0));
-    return res.fold(
-      (l) => Left(l),
-      (r) => Right(r),
-    );
+    return PegawaiProfile.fromMap(json.decode(pegawai!));
   }
 
   @override
@@ -39,5 +31,22 @@ class AbsensiRepository implements AbsensiRepositoryBase {
         desiredAccuracy: LocationAccuracy.high);
     currentPosition = LatLng(position.latitude, position.longitude);
     return currentPosition;
+  }
+
+  @override
+  Future<Either<GenericException, String>> absensi() async {
+    final res = await absensiRemoteDataSource.absen(
+        absensiRequest: AbsensiRequest(idPegawai: pegawaiProfile.id ?? 0));
+    return res;
+  }
+
+  @override
+  Future<Either<GenericException, RiwayatAbsensiResponse>>
+      riwayatAbsensi() async {
+    final res = await absensiRemoteDataSource.riwayatAbsensi(
+      absensiRequest: AbsensiRequest(idPegawai: pegawaiProfile.id ?? 0),
+    );
+
+    return res;
   }
 }

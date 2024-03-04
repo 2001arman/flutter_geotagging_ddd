@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../constants/constants_ui.dart';
@@ -12,6 +13,7 @@ class CustomDatePicker extends StatefulWidget {
   final TextEditingController dateinput;
 
   @override
+  // ignore: library_private_types_in_public_api
   _CustomDatePickerState createState() => _CustomDatePickerState();
 }
 
@@ -67,7 +69,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                       formattedDate; //set output date to TextField value.
                 });
               } else {
-                print("Date is not selected");
+                Get.log("Date is not selected");
               }
             },
           ),

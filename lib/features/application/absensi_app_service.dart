@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:geotagging/features/domain/absensi/interface/absensi_repository_base.dart';
+import 'package:geotagging/features/infrastructure/absensi/models/riwayat_absensi_response.dart';
 import 'package:geotagging/features/infrastructure/absensi/repository/absensi_repository.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -15,6 +16,13 @@ class AbsensiAppService {
 
   Future<Either<GenericException, String>> absen() async {
     final res = await _repository.absensi();
+
+    return res;
+  }
+
+  Future<Either<GenericException, RiwayatAbsensiResponse>>
+      riwayatAbsensi() async {
+    final res = await _repository.riwayatAbsensi();
 
     return res;
   }

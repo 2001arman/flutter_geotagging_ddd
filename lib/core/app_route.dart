@@ -50,7 +50,7 @@ class AppRoute {
     ),
     GetPage(
       name: RiwayatAbsensiUi.namePath,
-      page: () => const RiwayatAbsensiUi(),
+      page: () => RiwayatAbsensiUi(),
       binding: RiwayatAbsensiBinding(),
     ),
   ];
