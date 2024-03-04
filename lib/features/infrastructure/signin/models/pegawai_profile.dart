@@ -1,5 +1,5 @@
 class PegawaiProfile {
-  final int? id;
+  final int id;
   final String? name;
   final String? nip;
   final String? email;
@@ -12,7 +12,7 @@ class PegawaiProfile {
   final String? updatedAt;
 
   PegawaiProfile({
-    this.id,
+    required this.id,
     this.name,
     this.nip,
     this.email,

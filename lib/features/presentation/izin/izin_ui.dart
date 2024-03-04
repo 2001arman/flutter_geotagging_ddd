@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:geotagging/features/presentation/izin/izin_logic.dart';
+import 'package:get/get.dart';
 
 import '../../../utility/shared/constants/constants_ui.dart';
 import '../../../utility/shared/widgets/custom_text_form_field.dart';
@@ -6,30 +8,36 @@ import '../../../utility/shared/widgets/my_button.dart';
 
 class IzinUi extends StatelessWidget {
   static const String namePath = '/izin_page';
-  const IzinUi({super.key});
+  IzinUi({super.key});
+  final logic = Get.find<IzinLogic>();
+  final state = Get.find<IzinLogic>().state;
 
   @override
   Widget build(BuildContext context) {
-    List<String> radioValue = ["izin", "sakit", "cuti"];
     Widget formSection() {
       return Column(
         children: [
           SizedBox(height: defaultMargin),
-          for (var item in radioValue)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Radio(
-                  value: item,
-                  groupValue: '',
-                  onChanged: (val) {},
-                  activeColor: kOrangeColor,
+          for (var item in state.radioValue)
+            Obx(
+              () => GestureDetector(
+                onTap: () => logic.onChangeRadio(item),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Radio(
+                      value: item,
+                      groupValue: state.groupValue.value,
+                      onChanged: logic.onChangeRadio,
+                      activeColor: kOrangeColor,
+                    ),
+                    Text(
+                      item,
+                      style: blackTextStyle,
+                    ),
+                  ],
                 ),
-                Text(
-                  item,
-                  style: blackTextStyle,
-                ),
-              ],
+              ),
             ),
           const SizedBox(height: 16),
           CustomTextFormField(
@@ -45,9 +53,7 @@ class IzinUi extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           MyButton(
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () => Get.back(),
             title: "Cancel",
             isOrange: false,
           ),

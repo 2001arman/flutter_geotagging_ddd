@@ -36,7 +36,7 @@ class AbsensiRepository implements AbsensiRepositoryBase {
   @override
   Future<Either<GenericException, String>> absensi() async {
     final res = await absensiRemoteDataSource.absen(
-        absensiRequest: AbsensiRequest(idPegawai: pegawaiProfile.id ?? 0));
+        absensiRequest: AbsensiRequest(idPegawai: pegawaiProfile.id));
     return res;
   }
 
@@ -44,7 +44,7 @@ class AbsensiRepository implements AbsensiRepositoryBase {
   Future<Either<GenericException, RiwayatAbsensiResponse>>
       riwayatAbsensi() async {
     final res = await absensiRemoteDataSource.riwayatAbsensi(
-      absensiRequest: AbsensiRequest(idPegawai: pegawaiProfile.id ?? 0),
+      absensiRequest: AbsensiRequest(idPegawai: pegawaiProfile.id),
     );
 
     return res;

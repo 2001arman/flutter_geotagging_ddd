@@ -45,7 +45,7 @@ class AppRoute {
     ),
     GetPage(
       name: IzinUi.namePath,
-      page: () => const IzinUi(),
+      page: () => IzinUi(),
       binding: IzinBinding(),
     ),
     GetPage(
