@@ -1,29 +1,22 @@
-import 'dart:convert';
-
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:geotagging/features/presentation/cuti/cuti_state.dart';
+import 'package:geotagging/utility/helper.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../utility/shared/constants/storage_constants.dart';
 import '../../application/cuti_app_service.dart';
 import '../../infrastructure/signin/models/pegawai_profile.dart';
 
 class CutiLogic extends GetxController {
   final CutiAppService _app = Get.find<CutiAppService>();
   final CutiState state = CutiState();
-  var storage = Get.find<SharedPreferences>();
+  late PegawaiProfile pegawaiProfile;
 
   @override
   void onInit() {
+    pegawaiProfile = Helper().getPegawaiProfile;
     state.namaController.text = pegawaiProfile.name!;
     state.nipController.text = pegawaiProfile.nip!;
     super.onInit();
-  }
-
-  PegawaiProfile get pegawaiProfile {
-    String? pegawai = storage.getString(StorageConstants.pegawai);
-    return PegawaiProfile.fromMap(json.decode(pegawai!));
   }
 
   bool get isButtonDisable =>

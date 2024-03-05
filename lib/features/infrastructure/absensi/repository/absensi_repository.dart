@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geotagging/app/common/exception.dart';
@@ -8,21 +6,14 @@ import 'package:geotagging/features/infrastructure/absensi/data_source/absensi_r
 import 'package:geotagging/features/infrastructure/absensi/models/absensi_request.dart';
 import 'package:geotagging/features/infrastructure/absensi/models/riwayat_absensi_response.dart';
 import 'package:geotagging/features/infrastructure/signin/models/pegawai_profile.dart';
+import 'package:geotagging/utility/helper.dart';
 import 'package:get/get.dart';
 // ignore: depend_on_referenced_packages, implementation_imports
 import 'package:google_maps_flutter_platform_interface/src/types/location.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../../utility/shared/constants/storage_constants.dart';
 
 class AbsensiRepository implements AbsensiRepositoryBase {
   var absensiRemoteDataSource = Get.find<AbsensiRemotedataSource>();
-  var storage = Get.find<SharedPreferences>();
-
-  PegawaiProfile get pegawaiProfile {
-    String? pegawai = storage.getString(StorageConstants.pegawai);
-    return PegawaiProfile.fromMap(json.decode(pegawai!));
-  }
+  PegawaiProfile pegawaiProfile = Helper().getPegawaiProfile;
 
   @override
   Future<LatLng> getUserPosition() async {
