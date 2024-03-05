@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class AbsensiLogic extends GetxController {
   final AbsensiState state = AbsensiState();
@@ -45,23 +46,34 @@ class AbsensiLogic extends GetxController {
   }
 
   void cekJarak() async {
-    EasyLoading.show();
-    LatLng userPosition = await _app.getUserPosition();
-    double jarak = _mapApp.distanceBetween(state.latLong.latitude,
-        state.latLong.longitude, userPosition.latitude, userPosition.longitude);
+    if (await Permission.location.isGranted) {
+      EasyLoading.show();
+      LatLng userPosition = await _app.getUserPosition();
+      double jarak = _mapApp.distanceBetween(
+          state.latLong.latitude,
+          state.latLong.longitude,
+          userPosition.latitude,
+          userPosition.longitude);
 
-    if (jarak > 100) {
-      return Utils.dialogTidakBisaAbsen(jarak, userPosition);
-    } else {
-      final res = await _app.absen();
-      res.fold(
-          (l) => Get.snackbar('Error', l.info),
-          (r) => Utils.dialogBisaAbsen(
-                state.dateController.text,
-                state.clockController.text,
-                userPosition,
-              ));
+      if (jarak > 100) {
+        return Utils.dialogTidakBisaAbsen(jarak, userPosition);
+      } else {
+        final res = await _app.absen();
+        res.fold(
+            (l) => Get.snackbar('Error', l.info),
+            (r) => Utils.dialogBisaAbsen(
+                  state.dateController.text,
+                  state.clockController.text,
+                  userPosition,
+                ));
+      }
+      EasyLoading.dismiss();
+    } else if (await Permission.location.isDenied) {
+      await Permission.location.request();
+      return;
+    } else if (await Permission.location.isPermanentlyDenied) {
+      Utils.dialogPermissionRequest();
+      return;
     }
-    EasyLoading.dismiss();
   }
 }

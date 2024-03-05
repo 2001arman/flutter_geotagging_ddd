@@ -1,3 +1,4 @@
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -155,6 +156,60 @@ class Utils {
                   Get.back();
                 },
                 title: "Lanjutkan",
+              ),
+              const SizedBox(height: 30),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  static Future<dynamic> dialogPermissionRequest() {
+    return Get.dialog(
+      AlertDialog(
+        backgroundColor: const Color(0xFFFFEDED),
+        actionsAlignment: MainAxisAlignment.center,
+        actionsPadding: const EdgeInsets.symmetric(horizontal: 17),
+        actions: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 20),
+              Container(
+                width: 50,
+                height: 50,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/icon_failed.png"),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                "Izin Lokasi Dibutuhkan",
+                style: dialogRedTextStyle.copyWith(
+                  fontSize: 18,
+                  fontWeight: semiBold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
+              Text(
+                "Untuk menggunakan fitur ini, izinkan akses ke lokasi Anda. Aktifkan izin lokasi sekarang untuk melanjutkan.",
+                style: dialogRedTextStyle.copyWith(
+                  fontWeight: semiBold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 50),
+              MyButton(
+                onTap: () async {
+                  await AppSettings.openAppSettings(
+                      type: AppSettingsType.location);
+                },
+                title: "Pengaturan",
               ),
               const SizedBox(height: 30),
             ],

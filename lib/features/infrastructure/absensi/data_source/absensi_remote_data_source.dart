@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:geotagging/app/common/exception.dart';
 import 'package:geotagging/features/infrastructure/absensi/models/absensi_request.dart';
 import 'package:geotagging/features/infrastructure/absensi/models/riwayat_absensi_response.dart';
-import 'package:get/get.dart';
 
 import '../../../../app/network/api_provider.dart';
 
@@ -23,18 +22,13 @@ class AbsensiRemotedataSource {
   Future<Either<GenericException, RiwayatAbsensiResponse>> riwayatAbsensi(
       {required AbsensiRequest absensiRequest}) async {
     final res = await _apiProvider
-        .getData('riwayat-absensi/${absensiRequest.idPegawai}')
-        .catchError((onError) {
-      Get.log('onError riwayat abasensi $onError');
-      return onError;
-    });
-    if (res.data['status'] == 'success') {
-      return Right(RiwayatAbsensiResponse.fromMap(res.data));
-    } else {
-      return Left(
-        GenericException(
-            code: ExceptionCode.unknown, info: res.data['message']),
-      );
-    }
+        .getData('riwayat-absensi/${absensiRequest.idPegawai}');
+
+    return res.fold(
+      (l) => Left(l),
+      (r) => Right(
+        RiwayatAbsensiResponse.fromMap(r.data),
+      ),
+    );
   }
 }

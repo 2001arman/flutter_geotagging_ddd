@@ -121,16 +121,18 @@ class ApiProvider {
     }
   }
 
-  Future<Response> getData(String path, {Map<String, dynamic>? params}) async {
-    // try {
-    // await addAuthorOpt();
-    var response = await _dio.get(path, queryParameters: params);
-    return response;
-    // } on DioError catch (ex) {
-    //   EasyLoading.dismiss();
-    //   Get.log('===== DioError ${ex.response} || ${ex.error} || ${ex.message}');
-    //   throw Exception(ex.response);
-    // }
+  Future<Either<GenericException, Response>> getData(String path,
+      {Map<String, dynamic>? params}) async {
+    try {
+      var response = await _dio.get(path, queryParameters: params);
+
+      return Right(response);
+    } on DioError catch (ex) {
+      EasyLoading.dismiss();
+      return Left(
+        GenericException(code: ExceptionCode.unknown, info: ex.type.name),
+      );
+    }
   }
 
   Future<Response> post(String path) async {
