@@ -21,6 +21,11 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+def mapsApiKey = localProperties.getProperty('maps.apiKey')
+if (mapsApiKey == null) {
+    mapsApiKey = 'api_key_null'
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
@@ -51,7 +56,6 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        // manifestPlaceholders = [mapsApiKey: "$System.env.AIzaSyAgZSJ8f979GgWyMJZmY8353Nnd_w1-b60"]
     }
 
     buildTypes {
