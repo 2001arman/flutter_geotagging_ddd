@@ -40,7 +40,7 @@ class AppRoute {
     ),
     GetPage(
       name: CutiUi.namePath,
-      page: () => const CutiUi(),
+      page: () => CutiUi(),
       binding: CutiBinding(),
     ),
     GetPage(

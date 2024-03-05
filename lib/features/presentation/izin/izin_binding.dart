@@ -1,5 +1,5 @@
 import 'package:geotagging/features/application/izin_app_service.dart';
-import 'package:geotagging/features/infrastructure/izin/cuti_factory.dart';
+import 'package:geotagging/features/infrastructure/izin/izin_factory.dart';
 import 'package:geotagging/features/infrastructure/izin/data_source/izin_remote_data_source.dart';
 import 'package:geotagging/features/infrastructure/izin/repository/izin_repository.dart';
 import 'package:geotagging/features/presentation/izin/izin_logic.dart';

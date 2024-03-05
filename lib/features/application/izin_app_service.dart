@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:geotagging/features/domain/izin/interface/izin_factory_base.dart';
 import 'package:geotagging/features/domain/izin/interface/izin_repository_base.dart';
-import 'package:geotagging/features/infrastructure/izin/cuti_factory.dart';
+import 'package:geotagging/features/infrastructure/izin/izin_factory.dart';
 import 'package:geotagging/features/infrastructure/izin/repository/izin_repository.dart';
 import 'package:get/get.dart';
 

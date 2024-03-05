@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 import '../constants/constants_ui.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  const CustomTextFormField(
-      {Key? key,
-      required this.hintText,
-      this.isPassword = false,
-      required this.title,
-      this.minLines = 1,
-      required this.controller,
-      this.onChanged})
-      : super(key: key);
+  const CustomTextFormField({
+    Key? key,
+    required this.hintText,
+    this.isPassword = false,
+    required this.title,
+    this.minLines = 1,
+    required this.controller,
+    this.onChanged,
+    this.isReadOnly = false,
+  }) : super(key: key);
 
   final String hintText, title;
-  final bool isPassword;
+  final bool isPassword, isReadOnly;
   final int minLines;
   final TextEditingController controller;
   final Function(String)? onChanged;
@@ -74,6 +75,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             : TextFormField(
                 controller: widget.controller,
                 obscureText: widget.isPassword,
+                readOnly: widget.isReadOnly,
                 onChanged: widget.onChanged,
                 decoration: InputDecoration(
                   hintText: widget.hintText,

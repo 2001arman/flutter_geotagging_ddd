@@ -6,11 +6,12 @@ import '../constants/constants_ui.dart';
 
 class CustomDatePicker extends StatefulWidget {
   const CustomDatePicker(
-      {Key? key, required this.title, required this.dateinput})
+      {Key? key, required this.title, required this.dateinput, this.onChanged})
       : super(key: key);
 
   final String title;
   final TextEditingController dateinput;
+  final Function(String)? onChanged;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -68,6 +69,9 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                   widget.dateinput.text =
                       formattedDate; //set output date to TextField value.
                 });
+                if (widget.onChanged != null) {
+                  widget.onChanged!(formattedDate);
+                }
               } else {
                 Get.log("Date is not selected");
               }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geotagging/features/presentation/cuti/cuti_logic.dart';
 import 'package:get/get.dart';
 
 import '../../../utility/shared/constants/constants_ui.dart';
@@ -8,7 +9,9 @@ import '../../../utility/shared/widgets/my_button.dart';
 
 class CutiUi extends StatelessWidget {
   static String namePath = '/cuti_page';
-  const CutiUi({super.key});
+  CutiUi({super.key});
+  final logic = Get.find<CutiLogic>();
+  final state = Get.find<CutiLogic>().state;
 
   @override
   Widget build(BuildContext context) {
@@ -18,34 +21,46 @@ class CutiUi extends StatelessWidget {
         child: Column(
           children: [
             CustomTextFormField(
-              controller: TextEditingController(),
+              controller: state.namaController,
               hintText: "Masukkan Nama",
               title: "Nama",
+              isReadOnly: true,
             ),
             CustomTextFormField(
-              controller: TextEditingController(),
+              controller: state.nipController,
               hintText: "Masukkan NIP",
               title: "NIP",
+              isReadOnly: true,
             ),
             CustomTextFormField(
-              controller: TextEditingController(),
+              controller: state.keteranganController,
               hintText: "Masukkan Keterangan",
               title: "Keterangan",
               minLines: 5,
+              onChanged: logic.setKeterangan,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomDatePicker(
-                    title: "Mulai Dari", dateinput: TextEditingController()),
+                  title: "Mulai Dari",
+                  dateinput: state.mulaiDariController,
+                  onChanged: logic.setMulaiDari,
+                ),
                 CustomDatePicker(
-                    title: "Sampai", dateinput: TextEditingController()),
+                  title: "Sampai",
+                  dateinput: state.sampaiController,
+                  onChanged: logic.setSampai,
+                ),
               ],
             ),
             SizedBox(height: defaultMargin),
-            MyButton(
-              onTap: () {},
-              title: "Submit",
+            Obx(
+              () => MyButton(
+                onTap: logic.submitCuti,
+                title: "Submit",
+                disable: logic.isButtonDisable,
+              ),
             ),
             const SizedBox(height: 12),
             MyButton(
