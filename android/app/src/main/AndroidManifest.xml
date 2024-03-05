@@ -6,7 +6,7 @@
    <application
         android:label="geotagging"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAgZSJ8f979GgWyMJZmY8353Nnd_w1-b60"/>
         <activity
             android:name=".MainActivity"
