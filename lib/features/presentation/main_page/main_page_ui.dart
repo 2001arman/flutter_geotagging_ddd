@@ -66,8 +66,12 @@ class MainPageUi extends StatelessWidget {
               height: 57,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(29),
-                image: const DecorationImage(
-                  image: AssetImage("assets/avatar.png"),
+                image: DecorationImage(
+                  image: AssetImage(
+                    state.pegawai.value?.gender == '1'
+                        ? "assets/male.png"
+                        : "assets/female.png",
+                  ),
                 ),
               ),
             ),
