@@ -157,13 +157,19 @@ class ApiProvider {
     try {
       var response = await _dio.post(path, data: data);
       if (response.data['status'] == 'failed') {
-        return Left(GenericException(
-            code: ExceptionCode.unknown, info: response.data['message']));
+        return Left(
+          GenericException(
+            code: ExceptionCode.unknown,
+            info: response.data['message'],
+          ),
+        );
       }
       return Right(response);
-    } catch (ex) {
+    } on DioException catch (ex) {
       EasyLoading.dismiss();
-      throw Exception(ex);
+      return Left(
+        GenericException(code: ExceptionCode.unknown, info: ex.type.name),
+      );
     }
   }
 }

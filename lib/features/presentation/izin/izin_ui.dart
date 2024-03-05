@@ -41,15 +41,18 @@ class IzinUi extends StatelessWidget {
             ),
           const SizedBox(height: 16),
           CustomTextFormField(
-            controller: TextEditingController(),
+            controller: state.keteranganController,
             hintText: "Masukkan Keterangan",
             title: "Keterangan Lain",
             minLines: 3,
           ),
           SizedBox(height: defaultMargin),
-          MyButton(
-            onTap: () {},
-            title: "Submit",
+          Obx(
+            () => MyButton(
+              onTap: logic.submitIzin,
+              title: "Submit",
+              disable: logic.isButtonDisable,
+            ),
           ),
           const SizedBox(height: 12),
           MyButton(

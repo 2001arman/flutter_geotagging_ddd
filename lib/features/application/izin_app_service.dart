@@ -12,12 +12,11 @@ class IzinAppService {
   final IzinRepositoryBase _repository = Get.find<IzinRepository>();
 
   Future<Either<GenericException, String>> izin({
-    required int idPegawai,
     required String alasan,
     required String keterangan,
   }) async {
-    final signInEntities = _factory.create(
-        idPegawai: idPegawai, alasan: alasan, keterangan: keterangan);
+    final signInEntities =
+        _factory.create(alasan: alasan, keterangan: keterangan);
 
     final res = await _repository.izin(izinEntities: signInEntities);
 

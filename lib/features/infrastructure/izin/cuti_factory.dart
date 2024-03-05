@@ -4,10 +4,7 @@ import '../../domain/izin/interface/izin_factory_base.dart';
 
 class IzinFactory implements IzinFactoryBase {
   @override
-  IzinEntities create(
-      {required int idPegawai,
-      required String keterangan,
-      required String alasan}) {
+  IzinEntities create({required String keterangan, required String alasan}) {
     return IzinEntities(keterangan: keterangan, alasan: alasan);
   }
 }
