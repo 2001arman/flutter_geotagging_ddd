@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../app/common/exception.dart';
 import '../../../../app/network/api_provider.dart';
-import '../models/cuti_request.dart';
+import '../../../domain/cuti/models/cuti_request.dart';
 
 class CutiRemoteDataSource {
   final ApiProvider _apiProvider = ApiProvider();

@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:geotagging/app/common/exception.dart';
-import 'package:geotagging/features/infrastructure/signin/models/pegawai_profile.dart';
+import 'package:geotagging/features/domain/sign_in/models/pegawai_profile.dart';
 import 'package:get/get.dart';
 
 import '../domain/sign_in/interface/sign_in_factory_base.dart';

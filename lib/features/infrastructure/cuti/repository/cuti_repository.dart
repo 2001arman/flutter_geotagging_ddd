@@ -3,7 +3,7 @@ import 'package:geotagging/app/common/exception.dart';
 import 'package:geotagging/features/domain/cuti/entities/cuti_entities.dart';
 import 'package:geotagging/features/domain/cuti/interface/cuti_repository_base.dart';
 import 'package:geotagging/features/infrastructure/cuti/data_source/cuti_remote_data_source.dart';
-import 'package:geotagging/features/infrastructure/cuti/models/cuti_request.dart';
+import 'package:geotagging/features/domain/cuti/models/cuti_request.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

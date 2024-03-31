@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:geotagging/app/common/exception.dart';
 import 'package:geotagging/app/network/api_provider.dart';
-import 'package:geotagging/features/infrastructure/signin/models/pegawai_profile_response.dart';
-import 'package:geotagging/features/infrastructure/signin/models/signin_request.dart';
+import 'package:geotagging/features/domain/sign_in/models/pegawai_profile_response.dart';
+import 'package:geotagging/features/domain/sign_in/models/signin_request.dart';
 
 class SignInRemoteDataSource {
   final ApiProvider _apiProvider = ApiProvider();

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:geotagging/app/common/exception.dart';
-import 'package:geotagging/features/infrastructure/absensi/models/absensi_request.dart';
-import 'package:geotagging/features/infrastructure/absensi/models/riwayat_absensi_response.dart';
+import 'package:geotagging/features/domain/absensi/models/absensi_request.dart';
+import 'package:geotagging/features/domain/absensi/models/riwayat_absensi_response.dart';
 
 import '../../../../app/network/api_provider.dart';
 

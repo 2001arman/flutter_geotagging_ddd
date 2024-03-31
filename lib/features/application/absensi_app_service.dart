@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:geotagging/features/domain/absensi/interface/absensi_repository_base.dart';
-import 'package:geotagging/features/infrastructure/absensi/models/riwayat_absensi_response.dart';
+import 'package:geotagging/features/domain/absensi/models/riwayat_absensi_response.dart';
 import 'package:geotagging/features/infrastructure/absensi/repository/absensi_repository.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';

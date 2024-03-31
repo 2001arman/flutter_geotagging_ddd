@@ -3,9 +3,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:geotagging/app/common/exception.dart';
 import 'package:geotagging/features/domain/absensi/interface/absensi_repository_base.dart';
 import 'package:geotagging/features/infrastructure/absensi/data_source/absensi_remote_data_source.dart';
-import 'package:geotagging/features/infrastructure/absensi/models/absensi_request.dart';
-import 'package:geotagging/features/infrastructure/absensi/models/riwayat_absensi_response.dart';
-import 'package:geotagging/features/infrastructure/signin/models/pegawai_profile.dart';
+import 'package:geotagging/features/domain/absensi/models/absensi_request.dart';
+import 'package:geotagging/features/domain/absensi/models/riwayat_absensi_response.dart';
+import 'package:geotagging/features/domain/sign_in/models/pegawai_profile.dart';
 import 'package:geotagging/utility/helper.dart';
 import 'package:get/get.dart';
 // ignore: depend_on_referenced_packages, implementation_imports

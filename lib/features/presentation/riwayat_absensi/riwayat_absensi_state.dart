@@ -1,4 +1,4 @@
-import 'package:geotagging/features/infrastructure/absensi/models/riwayat_absensi_response.dart';
+import 'package:geotagging/features/domain/absensi/models/riwayat_absensi_response.dart';
 import 'package:get/get.dart';
 
 class RiwayatAbsensiState {

@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:geotagging/app/common/exception.dart';
-import 'package:geotagging/features/infrastructure/izin/models/izin_request.dart';
+import 'package:geotagging/features/domain/izin/models/izin_request.dart';
 
 import '../../../../app/network/api_provider.dart';
 

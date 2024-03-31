@@ -4,7 +4,7 @@ import 'package:geotagging/utility/helper.dart';
 import 'package:get/get.dart';
 
 import '../../application/cuti_app_service.dart';
-import '../../infrastructure/signin/models/pegawai_profile.dart';
+import '../../domain/sign_in/models/pegawai_profile.dart';
 
 class CutiLogic extends GetxController {
   final CutiAppService _app = Get.find<CutiAppService>();
