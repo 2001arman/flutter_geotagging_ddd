@@ -22,7 +22,6 @@ class MapAppService {
     var earthRadius = 6378137.0;
     var dLat = _toRadians(endLatitude - startLatitude);
     var dLon = _toRadians(endLongitude - startLongitude);
-
     var a = pow(sin(dLat / 2), 2) +
         pow(sin(dLon / 2), 2) *
             cos(_toRadians(startLatitude)) *

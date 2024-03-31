@@ -54,7 +54,7 @@ class AbsensiLogic extends GetxController {
           state.latLong.longitude,
           userPosition.latitude,
           userPosition.longitude);
-
+      Get.log('=== jaraknya berapa lur $jarak');
       if (jarak > 100) {
         return Utils.dialogTidakBisaAbsen(jarak, userPosition);
       } else {
