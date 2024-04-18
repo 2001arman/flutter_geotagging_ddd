@@ -21,6 +21,7 @@ class SignInUi extends StatelessWidget {
             hintText: "Masukkan Email",
             controller: logic.emailController,
             onChanged: logic.onChangeUsername,
+            textInputType: TextInputType.emailAddress,
           ),
           CustomTextFormField(
             title: "Password",

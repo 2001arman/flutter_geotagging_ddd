@@ -12,6 +12,7 @@ class CustomTextFormField extends StatefulWidget {
     required this.controller,
     this.onChanged,
     this.isReadOnly = false,
+    this.textInputType = TextInputType.text,
   }) : super(key: key);
 
   final String hintText, title;
@@ -19,6 +20,7 @@ class CustomTextFormField extends StatefulWidget {
   final int minLines;
   final TextEditingController controller;
   final Function(String)? onChanged;
+  final TextInputType textInputType;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -90,6 +92,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   ),
                 ),
                 maxLines: widget.minLines,
+                keyboardType: widget.textInputType,
               ),
         const SizedBox(height: 12),
       ],
