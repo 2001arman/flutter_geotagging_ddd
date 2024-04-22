@@ -65,6 +65,7 @@ class AbsensiLogic extends GetxController {
                   state.dateController.text,
                   state.clockController.text,
                   userPosition,
+                  jarak,
                 ));
       }
       EasyLoading.dismiss();

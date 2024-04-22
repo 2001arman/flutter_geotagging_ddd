@@ -77,7 +77,7 @@ class Utils {
   }
 
   static Future<dynamic> dialogBisaAbsen(
-      String tanggal, String jam, LatLng location) {
+      String tanggal, String jam, LatLng location, double jarak) {
     return Get.dialog(
       AlertDialog(
         backgroundColor: const Color(0xFFEFFFEC),
@@ -144,6 +144,17 @@ class Utils {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Lokasi   : ${location.latitude}, ${location.longitude}",
+                  style: dialogGreenTextStyle.copyWith(
+                    fontWeight: semiBold,
+                  ),
+                  textAlign: TextAlign.start,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Jarak     : ${jarak.round()} m",
                   style: dialogGreenTextStyle.copyWith(
                     fontWeight: semiBold,
                   ),
