@@ -15,7 +15,6 @@ class SplashScreenLogic extends GetxController with WidgetsBindingObserver {
   Future<void> nextRoute() async {
     final hasPegawai = preference.getString(StorageConstants.pegawai);
     final holiday = preference.getString(StorageConstants.holiday);
-    Get.log('ada gasi shared holiday $holiday');
     if (holiday == null) {
       await _holidayApp.getHolidayData();
     }

@@ -229,4 +229,55 @@ class Utils {
       ),
     );
   }
+
+  static Future<dynamic> dialogTidakBisaAbsenHari(String alasan) {
+    return Get.dialog(
+      AlertDialog(
+        backgroundColor: const Color(0xFFFFEDED),
+        actionsAlignment: MainAxisAlignment.center,
+        actionsPadding: const EdgeInsets.symmetric(horizontal: 17),
+        actions: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 20),
+              Container(
+                width: 50,
+                height: 50,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/icon_failed.png"),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                "Tidak Bisa Absen",
+                style: dialogRedTextStyle.copyWith(
+                  fontSize: 18,
+                  fontWeight: semiBold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
+              Text(
+                alasan,
+                style: dialogRedTextStyle.copyWith(
+                  fontWeight: semiBold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 50),
+              MyButton(
+                onTap: () => Get.back(),
+                title: "Kembali",
+              ),
+              const SizedBox(height: 30),
+            ],
+          )
+        ],
+      ),
+    );
+  }
 }

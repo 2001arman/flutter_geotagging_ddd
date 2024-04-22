@@ -72,7 +72,12 @@ class AbsensiUI extends StatelessWidget {
                 ),
                 SizedBox(height: defaultMargin),
                 MyButton(
-                  onTap: () => logic.cekJarak(),
+                  onTap: () {
+                    bool jam = logic.ceckJamHari();
+                    if (jam) {
+                      logic.cekJarak();
+                    }
+                  },
                   title: "Submit",
                 ),
                 SizedBox(height: defaultMargin),

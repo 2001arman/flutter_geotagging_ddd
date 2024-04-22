@@ -47,7 +47,7 @@ TextStyle dialogGreenTextStyle = GoogleFonts.inter(
 );
 
 TextStyle dialogRedTextStyle = GoogleFonts.inter(
-  color: const Color(0xFFFF6767),
+  color: kRedColor,
 );
 
 double defaultMargin = 24.0;
