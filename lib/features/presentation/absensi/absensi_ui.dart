@@ -93,7 +93,7 @@ class AbsensiUI extends StatelessWidget {
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: kTitleColor),
         title: Text(
-          "Absensi Kehadiran",
+          "Presensi Kehadiran",
           style: titleTextStyle.copyWith(
             fontSize: 18,
             fontWeight: semiBold,

@@ -32,7 +32,7 @@ class Utils {
               ),
               const SizedBox(height: 20),
               Text(
-                "Tidak Bisa Absen",
+                "Tidak Bisa Presensi",
                 style: dialogRedTextStyle.copyWith(
                   fontSize: 18,
                   fontWeight: semiBold,
@@ -101,7 +101,7 @@ class Utils {
               ),
               const SizedBox(height: 20),
               Text(
-                "Berhasil Absen",
+                "Berhasil Presensi",
                 style: dialogGreenTextStyle.copyWith(
                   fontSize: 18,
                   fontWeight: semiBold,
@@ -253,7 +253,7 @@ class Utils {
               ),
               const SizedBox(height: 20),
               Text(
-                "Tidak Bisa Absen",
+                "Tidak Bisa Presensi",
                 style: dialogRedTextStyle.copyWith(
                   fontSize: 18,
                   fontWeight: semiBold,

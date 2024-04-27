@@ -46,7 +46,7 @@ class RiwayatAbsensiUi extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Riwayat Absensi",
+          "Riwayat Presensi",
           style: titleTextStyle.copyWith(
             fontSize: 18,
             fontWeight: semiBold,

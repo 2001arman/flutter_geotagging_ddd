@@ -90,7 +90,7 @@ class MainPageUi extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomCardButton(
-                  title: "Absensi\nKehadiran",
+                  title: "Presensi\nKehadiran",
                   imageUrl: "assets/icon_absen.png",
                   onTap: () => Get.toNamed(AbsensiUI.namePath),
                 ),
