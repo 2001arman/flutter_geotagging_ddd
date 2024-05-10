@@ -34,37 +34,4 @@ class MapAppService {
   static _toRadians(double degree) {
     return degree * pi / 180;
   }
-
-  /// Convert [radians] to degrees.
-  double degrees(double radians) => radians * radians2Degrees;
-
-  /// Convert [degrees] to radians.
-  double radians(double degrees) => degrees * degrees2Radians;
-
-  /// Calculates the initial bearing between two points
-  ///
-  /// The initial bearing will most of the time be different than the end
-  /// bearing, see https://www.movable-type.co.uk/scripts/latlong.html#bearing.
-  /// The supplied coordinates [startLatitude], [startLongitude], [endLatitude]
-  /// and [endLongitude] should be supplied in degrees.
-  double bearingBetween(
-    double startLatitude,
-    double startLongitude,
-    double endLatitude,
-    double endLongitude,
-  ) {
-    var startLongitudeRadians = radians(startLongitude);
-    var startLatitudeRadians = radians(startLatitude);
-    var endLongitudeRadians = radians(endLongitude);
-    var endLatitudeRadians = radians(endLatitude);
-
-    var y = sin(endLongitudeRadians - startLongitudeRadians) *
-        cos(endLatitudeRadians);
-    var x = cos(startLatitudeRadians) * sin(endLatitudeRadians) -
-        sin(startLatitudeRadians) *
-            cos(endLatitudeRadians) *
-            cos(endLongitudeRadians - startLongitudeRadians);
-
-    return degrees(atan2(y, x));
-  }
 }
