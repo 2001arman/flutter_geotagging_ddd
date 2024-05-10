@@ -32,9 +32,11 @@ class SignInLogic extends GetxController {
       final res = await _app.signIn(
           email: state.email.value, password: state.password.value);
       res.fold((l) => Get.snackbar('Error', l.info), (r) {
+        Get.snackbar('Success', "Berhasil Login! Selamat Datang.");
         Get.offNamed(MainPageUi.namePath);
       });
       EasyLoading.dismiss();
+      return;
     }
   }
 }
